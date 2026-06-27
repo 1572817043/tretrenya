@@ -1,0 +1,437 @@
+---
+import site from "@/config/site";
+const playlist = site.music;
+---
+
+<div
+  id="music-player"
+  class="fixed right-6 bottom-6 z-50 hidden"
+  data-playlist={JSON.stringify(playlist)}
+  data-astro-transition-persist="music-player"
+>
+  <!-- 收起状态：胶囊 -->
+  <div
+    id="player-capsule"
+    class="flex cursor-grab items-center gap-3 rounded-full border border-border bg-card px-4 py-2.5 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:shadow-xl active:cursor-grabbing"
+  >
+    <button
+      id="capsule-play"
+      class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary transition-colors hover:bg-primary/25"
+    >
+      <svg
+        id="capsule-play-icon"
+        class="h-4 w-4"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+      <svg
+        id="capsule-pause-icon"
+        class="hidden h-4 w-4"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
+      </svg>
+    </button>
+    <div class="max-w-[160px] min-w-0">
+      <p
+        id="capsule-title"
+        class="truncate text-xs font-bold text-foreground/80"
+      >
+      </p>
+      <p id="capsule-artist" class="truncate text-[10px] text-muted-foreground">
+      </p>
+    </div>
+    <button
+      id="player-expand"
+      class="flex h-6 w-6 shrink-0 items-center justify-center text-muted-foreground/60 transition-colors hover:text-primary"
+    >
+      <svg
+        class="h-3.5 w-3.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+      >
+        <path d="M7 11l5-5 5 5M7 17l5-5 5 5"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- 展开状态：完整控制面板 -->
+  <div
+    id="player-expanded"
+    class="w-[300px] rounded-2xl border border-border bg-card p-5 shadow-xl backdrop-blur-sm transition-all duration-300 ease-out"
+    style="opacity: 0; transform: translateY(10px) scale(0.95); pointer-events: none; position: absolute; bottom: 100%; right: 0; margin-bottom: 8px;"
+  >
+    <div class="mb-4 flex items-center justify-between">
+      <div class="min-w-0 flex-1">
+        <p
+          id="expanded-title"
+          class="truncate text-sm font-bold text-foreground/80"
+        >
+        </p>
+        <p
+          id="expanded-artist"
+          class="truncate text-[11px] text-muted-foreground"
+        >
+        </p>
+      </div>
+      <button
+        id="player-collapse"
+        class="flex h-7 w-7 shrink-0 items-center justify-center text-muted-foreground/60 transition-colors hover:text-primary"
+      >
+        <svg
+          class="h-3.5 w-3.5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <path d="M7 13l5 5 5-5M7 7l5-5 5 5"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- 进度条 -->
+    <div class="mb-4 flex items-center gap-2">
+      <span
+        id="current-time"
+        class="w-9 text-right font-mono text-[10px] text-muted-foreground"
+        >0:00</span
+      >
+      <div
+        id="progress-bar"
+        class="group relative h-1.5 flex-1 cursor-pointer rounded-full bg-muted/50"
+      >
+        <div
+          id="progress-fill"
+          class="absolute top-0 left-0 h-full rounded-full bg-primary transition-[width] duration-100"
+          style="width: 0%"
+        >
+        </div>
+        <div
+          id="progress-thumb"
+          class="absolute top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100"
+          style="left: 0%"
+        >
+        </div>
+      </div>
+      <span
+        id="duration"
+        class="w-9 font-mono text-[10px] text-muted-foreground">0:00</span
+      >
+    </div>
+
+    <!-- 控制按钮 -->
+    <div class="flex items-center justify-center gap-4">
+      <button
+        id="prev-btn"
+        class="text-muted-foreground transition-colors hover:text-primary"
+      >
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"></path>
+        </svg>
+      </button>
+      <button
+        id="expanded-play"
+        class="flex h-11 w-11 items-center justify-center rounded-full bg-primary text-primary-foreground transition-all hover:scale-105 active:scale-95"
+      >
+        <svg
+          id="expanded-play-icon"
+          class="h-5 w-5"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path d="M8 5v14l11-7z"></path>
+        </svg>
+        <svg
+          id="expanded-pause-icon"
+          class="hidden h-5 w-5"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
+        </svg>
+      </button>
+      <button
+        id="next-btn"
+        class="text-muted-foreground transition-colors hover:text-primary"
+      >
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<audio
+  id="global-audio"
+  preload="auto"
+  data-astro-transition-persist="global-audio"></audio>
+
+<script>
+  const STORAGE_KEY = "music-player-state";
+
+  function initPlayer() {
+    const playerEl = document.getElementById("music-player");
+    if (!playerEl) return;
+
+    const playlist: { title: string; artist: string; src: string }[] =
+      JSON.parse(playerEl.dataset.playlist || "[]");
+
+    if (playlist.length === 0) return;
+
+    let currentIndex = 0;
+    let isPlaying = false;
+    let isExpanded = false;
+
+    const audio = document.getElementById("global-audio") as HTMLAudioElement;
+    const capsule = document.getElementById("player-capsule")!;
+    const expandedPanel = document.getElementById("player-expanded")!;
+
+    const capsulePlay = document.getElementById("capsule-play")!;
+    const capsulePlayIcon = document.getElementById("capsule-play-icon")!;
+    const capsulePauseIcon = document.getElementById("capsule-pause-icon")!;
+    const capsuleTitle = document.getElementById("capsule-title")!;
+    const capsuleArtist = document.getElementById("capsule-artist")!;
+
+    const expandedTitle = document.getElementById("expanded-title")!;
+    const expandedArtist = document.getElementById("expanded-artist")!;
+    const expandedPlay = document.getElementById("expanded-play")!;
+    const expandedPlayIcon = document.getElementById("expanded-play-icon")!;
+    const expandedPauseIcon = document.getElementById("expanded-pause-icon")!;
+    const progressBar = document.getElementById("progress-bar")!;
+    const progressFill = document.getElementById("progress-fill")!;
+    const progressThumb = document.getElementById("progress-thumb")!;
+    const currentTimeEl = document.getElementById("current-time")!;
+    const durationEl = document.getElementById("duration")!;
+    const prevBtn = document.getElementById("prev-btn")!;
+    const nextBtn = document.getElementById("next-btn")!;
+    const expandBtn = document.getElementById("player-expand")!;
+    const collapseBtn = document.getElementById("player-collapse")!;
+
+    function formatTime(s: number) {
+      if (isNaN(s)) return "0:00";
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return `${m}:${sec.toString().padStart(2, "0")}`;
+    }
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const state = JSON.parse(saved);
+          currentIndex = state.currentIndex || 0;
+        }
+      } catch {}
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ currentIndex }));
+      } catch {}
+    }
+
+    function updateUI() {
+      const track = playlist[currentIndex];
+      capsuleTitle.textContent = track.title;
+      capsuleArtist.textContent = track.artist;
+      expandedTitle.textContent = track.title;
+      expandedArtist.textContent = track.artist;
+
+      if (isPlaying) {
+        capsulePlayIcon.classList.add("hidden");
+        capsulePauseIcon.classList.remove("hidden");
+        expandedPlayIcon.classList.add("hidden");
+        expandedPauseIcon.classList.remove("hidden");
+      } else {
+        capsulePlayIcon.classList.remove("hidden");
+        capsulePauseIcon.classList.add("hidden");
+        expandedPlayIcon.classList.remove("hidden");
+        expandedPauseIcon.classList.add("hidden");
+      }
+    }
+
+    function loadTrack(index: number) {
+      currentIndex = index;
+      if (
+        !audio.src ||
+        !audio.src.includes(encodeURIComponent(playlist[currentIndex].src))
+      ) {
+        audio.src = playlist[currentIndex].src;
+      }
+      updateUI();
+      saveState();
+    }
+
+    function play() {
+      audio.play().catch(() => {});
+      isPlaying = true;
+      updateUI();
+    }
+
+    function pause() {
+      audio.pause();
+      isPlaying = false;
+      updateUI();
+    }
+
+    function togglePlay() {
+      if (isPlaying) pause();
+      else play();
+    }
+
+    function nextTrack() {
+      currentIndex = (currentIndex + 1) % playlist.length;
+      loadTrack(currentIndex);
+      if (isPlaying) play();
+    }
+
+    function prevTrack() {
+      currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+      loadTrack(currentIndex);
+      if (isPlaying) play();
+    }
+
+    function showExpanded() {
+      isExpanded = true;
+      capsule.style.display = "none";
+      expandedPanel.style.opacity = "1";
+      expandedPanel.style.transform = "translateY(0) scale(1)";
+      expandedPanel.style.pointerEvents = "auto";
+    }
+
+    function hideExpanded() {
+      isExpanded = false;
+      expandedPanel.style.transition = "none";
+      expandedPanel.style.opacity = "0";
+      expandedPanel.style.transform = "translateY(10px) scale(0.95)";
+      expandedPanel.style.pointerEvents = "none";
+      capsule.style.display = "flex";
+      // 恢复 transition 给下次展开用
+      requestAnimationFrame(() => {
+        expandedPanel.style.transition = "";
+      });
+    }
+
+    function toggleExpand() {
+      if (isExpanded) hideExpanded();
+      else showExpanded();
+    }
+
+    // 进度条交互
+    let isDragging = false;
+
+    function updateProgress(e: MouseEvent) {
+      const rect = progressBar.getBoundingClientRect();
+      const pct = Math.max(
+        0,
+        Math.min(1, (e.clientX - rect.left) / rect.width),
+      );
+      progressFill.style.width = `${pct * 100}%`;
+      progressThumb.style.left = `${pct * 100}%`;
+      if (audio.duration) {
+        audio.currentTime = pct * audio.duration;
+      }
+    }
+
+    progressBar.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      updateProgress(e);
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (isDragging) updateProgress(e);
+    });
+
+    document.addEventListener("mouseup", () => {
+      isDragging = false;
+    });
+
+    audio.addEventListener("timeupdate", () => {
+      if (!isDragging && audio.duration) {
+        const pct = (audio.currentTime / audio.duration) * 100;
+        progressFill.style.width = `${pct}%`;
+        progressThumb.style.left = `${pct}%`;
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+        durationEl.textContent = formatTime(audio.duration);
+      }
+    });
+
+    audio.addEventListener("ended", nextTrack);
+
+    // 按钮事件
+    capsulePlay.addEventListener("click", (e) => {
+      e.stopPropagation();
+      togglePlay();
+    });
+
+    expandedPlay.addEventListener("click", togglePlay);
+    prevBtn.addEventListener("click", prevTrack);
+    nextBtn.addEventListener("click", nextTrack);
+    expandBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleExpand();
+    });
+    collapseBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      hideExpanded();
+    });
+    capsule.addEventListener("click", showExpanded);
+
+    // 拖拽胶囊
+    let dragStartX = 0,
+      dragStartY = 0;
+    let capsuleStartX = 0,
+      capsuleStartY = 0;
+    let hasMoved = false;
+
+    capsule.addEventListener("mousedown", (e) => {
+      if ((e.target as HTMLElement).closest("button")) return;
+      dragStartX = e.clientX;
+      dragStartY = e.clientY;
+      const rect = capsule.getBoundingClientRect();
+      capsuleStartX = rect.left;
+      capsuleStartY = rect.top;
+      hasMoved = false;
+
+      const onMouseMove = (e: MouseEvent) => {
+        const dx = e.clientX - dragStartX;
+        const dy = e.clientY - dragStartY;
+        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) hasMoved = true;
+        if (hasMoved) {
+          playerEl.style.bottom = "auto";
+          playerEl.style.right = "auto";
+          playerEl.style.left = `${capsuleStartX + dx}px`;
+          playerEl.style.top = `${capsuleStartY + dy}px`;
+        }
+      };
+
+      const onMouseUp = () => {
+        document.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener("mouseup", onMouseUp);
+        if (!hasMoved) showExpanded();
+      };
+
+      document.addEventListener("mousemove", onMouseMove);
+      document.addEventListener("mouseup", onMouseUp);
+    });
+
+    // 初始化
+    playerEl.classList.remove("hidden");
+    loadState();
+    loadTrack(currentIndex);
+
+    (window as any).playTrack = (index: number) => {
+      loadTrack(index);
+      play();
+    };
+  }
+
+  document.addEventListener("astro:page-load", initPlayer);
+</script>

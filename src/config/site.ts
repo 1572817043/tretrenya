@@ -152,6 +152,27 @@ const site = {
     },
   ],
 
+  // --- Music Playlist ---
+  // 将 MP3 文件放入 public/music/ 目录
+  music: [
+    {
+      title: "如果的事",
+      artist: "范玮琪 / 张韶涵",
+      src: "/music/范玮琪,张韶涵_-_如果的事.mp3",
+    },
+    {
+      title: "所念皆星河（伴奏）",
+      artist: "房东的猫",
+      src: "/music/房东的猫_-_所念皆星河（伴奏）.mp3",
+    },
+    {
+      title: "向左转向右转",
+      artist: "梁静茹",
+      src: "/music/梁静茹_-_向左转向右转.mp3",
+    },
+    { title: "遇见", artist: "孙燕姿", src: "/music/孙燕姿_-_遇见.mp3" },
+  ] as readonly { title: string; artist: string; src: string }[],
+
   // --- UI Labels ---
   // Customize these values to change the text displayed on pages
   labels: {

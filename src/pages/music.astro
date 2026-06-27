@@ -1,5 +1,8 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import site from "@/config/site";
+
+const playlist = site.music;
 ---
 
 <Layout title="音乐" description="个人最喜欢的歌曲">
@@ -13,8 +16,61 @@ import Layout from "@/layouts/Layout.astro";
       </p>
     </header>
 
-    <div class="py-12 text-center">
-      <p class="text-sm text-muted-foreground">暂无歌曲，敬请期待</p>
+    <div
+      id="music-list"
+      class="space-y-2"
+      data-playlist={JSON.stringify(playlist)}
+    >
+      {
+        playlist.length === 0 ? (
+          <div class="py-12 text-center">
+            <p class="text-sm text-muted-foreground">
+              将 MP3 文件放入{" "}
+              <code class="rounded bg-muted/50 px-1.5 py-0.5 font-mono text-xs">
+                public/music/
+              </code>{" "}
+              目录
+            </p>
+          </div>
+        ) : (
+          playlist.map((track, i) => (
+            <div
+              class="group flex cursor-pointer items-center gap-4 rounded-xl border border-border/40 p-4 transition-all duration-300 hover:border-primary/40 hover:bg-muted/30"
+              data-index={i}
+            >
+              <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary/20">
+                <span class="text-xs font-bold text-primary/60 group-hover:hidden">
+                  {i + 1}
+                </span>
+                <svg
+                  class="hidden h-4 w-4 text-primary group-hover:block"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+              <div class="min-w-0 flex-1">
+                <p class="text-sm font-bold text-foreground/80 group-hover:text-primary">
+                  {track.title}
+                </p>
+                <p class="text-[11px] text-muted-foreground">{track.artist}</p>
+              </div>
+            </div>
+          ))
+        )
+      }
     </div>
   </div>
 </Layout>
+
+<script>
+  document.querySelectorAll("[data-index]").forEach((el) => {
+    el.addEventListener("click", () => {
+      const index = parseInt(el.getAttribute("data-index")!);
+      if (typeof (window as any).playTrack === "function") {
+        (window as any).playTrack(index);
+      }
+    });
+  });
+</script>

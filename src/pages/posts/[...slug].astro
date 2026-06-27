@@ -29,7 +29,7 @@ const tags = (await getEntries(post.data.tags)).filter((value) => value);
 
 <Layout title={post.data.title} description={post.data.summary}>
   <article
-    class="animate-in fade-in mx-auto max-w-2xl overflow-x-hidden p-8 duration-1000 md:p-16"
+    class="animate-in fade-in mx-auto max-w-4xl overflow-x-hidden p-8 duration-1000 md:p-16"
   >
     <header class="mb-16 border-b border-border/50 pb-12">
       <div
@@ -147,7 +147,8 @@ const tags = (await getEntries(post.data.tags)).filter((value) => value);
       >
         <span class="transition-transform group-hover:-translate-x-1">
           <Icon name="mdi:arrow-left" size={14} />
-        </span> {site.labels.backToPosts}
+        </span>
+        {site.labels.backToPosts}
       </a>
       <div
         class="font-mono text-[10px] tracking-widest text-muted-foreground/30 uppercase"

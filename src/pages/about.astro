@@ -7,8 +7,11 @@ const about = await getEntry("pages", "about");
 const { Content } = await render(about!);
 ---
 
-<Layout title={site.labels.aboutTitle} description={site.labels.aboutDescription}>
-  <div class="animate-in fade-in mx-auto max-w-2xl p-8 duration-700 md:p-16">
+<Layout
+  title={site.labels.aboutTitle}
+  description={site.labels.aboutDescription}
+>
+  <div class="animate-in fade-in mx-auto max-w-4xl p-8 duration-700 md:p-16">
     <div class="prose dark:prose-invert">
       <Content />
     </div>

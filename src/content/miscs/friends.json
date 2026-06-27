@@ -1,9 +1,234 @@
 [
   {
-    "id": "breeze",
-    "name": "Breeze Theme",
-    "description": "A minimal Astro theme",
-    "link": "https://github.com",
-    "avatar": "/logo.svg"
+    "id": "claude",
+    "name": "Claude",
+    "description": "Anthropic出品，长文本理解强，写代码好用",
+    "link": "https://claude.ai/",
+    "avatar": "/logo.svg",
+    "category": "AI工具"
+  },
+  {
+    "id": "tongyi",
+    "name": "通义千问",
+    "description": "阿里出品，国内直接用，免费",
+    "link": "https://tongyi.aliyun.com/",
+    "avatar": "/logo.svg",
+    "category": "AI工具"
+  },
+  {
+    "id": "kimi",
+    "name": "Kimi",
+    "description": "月之暗面出品，支持20万字长文本",
+    "link": "https://kimi.moonshot.cn/",
+    "avatar": "/logo.svg",
+    "category": "AI工具"
+  },
+  {
+    "id": "yiyan",
+    "name": "文心一言",
+    "description": "百度出品，中文理解好",
+    "link": "https://yiyan.baidu.com/",
+    "avatar": "/logo.svg",
+    "category": "AI工具"
+  },
+  {
+    "id": "mvcat",
+    "name": "电影推荐",
+    "description": "电影榜单、评分、分类推荐，选片用",
+    "link": "https://www.mvcat.com/",
+    "avatar": "/logo.svg",
+    "category": "影视"
+  },
+  {
+    "id": "bilibili",
+    "name": "哔哩哔哩",
+    "description": "动漫、纪录片、学习资源丰富",
+    "link": "https://www.bilibili.com/",
+    "avatar": "/logo.svg",
+    "category": "影视"
+  },
+  {
+    "id": "libvio",
+    "name": "libvio",
+    "description": "高清影视，资源多",
+    "link": "https://www.libvio.me/",
+    "avatar": "/logo.svg",
+    "category": "影视"
+  },
+  {
+    "id": "moovie",
+    "name": "Moovie",
+    "description": "影视资源搜索",
+    "link": "https://www.moovie.cc/",
+    "avatar": "/logo.svg",
+    "category": "影视"
+  },
+  {
+    "id": "haimian",
+    "name": "海绵小站",
+    "description": "影视资源",
+    "link": "https://www.haimian.com/",
+    "avatar": "/logo.svg",
+    "category": "影视"
+  },
+  {
+    "id": "rarbg",
+    "name": "RARBG",
+    "description": "老牌磁力站，资源全",
+    "link": "https://rarbg.to/",
+    "avatar": "/logo.svg",
+    "category": "磁力资源"
+  },
+  {
+    "id": "tonzhon",
+    "name": "铜钟",
+    "description": "聚合多平台音乐，免费在线听",
+    "link": "https://tonzhon.com/",
+    "avatar": "/logo.svg",
+    "category": "音乐"
+  },
+  {
+    "id": "musicenc",
+    "name": "MusicEnc",
+    "description": "音乐搜索下载",
+    "link": "https://www.musicenc.com/",
+    "avatar": "/logo.svg",
+    "category": "音乐"
+  },
+  {
+    "id": "gequbao",
+    "name": "歌词宝",
+    "description": "歌词搜索下载",
+    "link": "https://www.gequbao.com/",
+    "avatar": "/logo.svg",
+    "category": "音乐"
+  },
+  {
+    "id": "fangpi",
+    "name": "放屁音乐",
+    "description": "音乐下载",
+    "link": "https://www.fangpi.net/",
+    "avatar": "/logo.svg",
+    "category": "音乐"
+  },
+  {
+    "id": "banshujiang",
+    "name": "搬书匠",
+    "description": "教材类书籍，英文为主",
+    "link": "http://www.banshujiang.cn/",
+    "avatar": "/logo.svg",
+    "category": "书籍"
+  },
+  {
+    "id": "tuishuge",
+    "name": "推书阁",
+    "description": "Kindle电子书资源",
+    "link": "http://www.tuishuge.com/",
+    "avatar": "/logo.svg",
+    "category": "书籍"
+  },
+  {
+    "id": "9312",
+    "name": "小鲸鱼文献",
+    "description": "文献搜索下载",
+    "link": "http://www.9312.net/",
+    "avatar": "/logo.svg",
+    "category": "书籍"
+  },
+  {
+    "id": "yandex",
+    "name": "Yandex",
+    "description": "以图搜图、翻译、地图、在线小游戏",
+    "link": "https://yandex.com/",
+    "avatar": "/logo.svg",
+    "category": "搜索引擎"
+  },
+  {
+    "id": "yxzhi",
+    "name": "鸭先知",
+    "description": "各种软件下载，更新及时",
+    "link": "https://www.yxzhi.com/",
+    "avatar": "/logo.svg",
+    "category": "资源"
+  },
+  {
+    "id": "cxy521",
+    "name": "CXY521",
+    "description": "程序员资源站，工具多",
+    "link": "http://www.cxy521.com/",
+    "avatar": "/logo.svg",
+    "category": "资源"
+  },
+  {
+    "id": "appmiu",
+    "name": "APP喵",
+    "description": "跨平台APP推荐，少而精",
+    "link": "https://www.appmiu.com/",
+    "avatar": "/logo.svg",
+    "category": "资源"
+  },
+  {
+    "id": "tinypng",
+    "name": "TinyPNG",
+    "description": "图片压缩，保持画质，免费好用",
+    "link": "https://tinypng.com/",
+    "avatar": "/logo.svg",
+    "category": "工具"
+  },
+  {
+    "id": "removebg",
+    "name": "Remove.bg",
+    "description": "AI一键去背景，秒级处理",
+    "link": "https://www.remove.bg/",
+    "avatar": "/logo.svg",
+    "category": "工具"
+  },
+  {
+    "id": "pdf2doc",
+    "name": "文档转换",
+    "description": "PDF转Word、Excel等格式",
+    "link": "https://pdf2doc.com/",
+    "avatar": "/logo.svg",
+    "category": "工具"
+  },
+  {
+    "id": "moises",
+    "name": "伴奏提取",
+    "description": "AI分离人声和伴奏，一个月5次",
+    "link": "https://studio.moises.ai/",
+    "avatar": "/logo.svg",
+    "category": "工具"
+  },
+  {
+    "id": "qrbtf",
+    "name": "QRBTF",
+    "description": "好看的艺术二维码生成",
+    "link": "https://qrbtf.com/",
+    "avatar": "/logo.svg",
+    "category": "工具"
+  },
+  {
+    "id": "magiconch",
+    "name": "梗图生成",
+    "description": "在线做梗图，超有意思",
+    "link": "https://x.magiconch.com/",
+    "avatar": "/logo.svg",
+    "category": "工具"
+  },
+  {
+    "id": "baimiao",
+    "name": "图片转文字",
+    "description": "OCR识别，支持图片、PDF、表格",
+    "link": "https://web.baimiaoapp.com/",
+    "avatar": "/logo.svg",
+    "category": "工具"
+  },
+  {
+    "id": "photopea",
+    "name": "在线PS",
+    "description": "网页版Photoshop，免费强大",
+    "link": "https://www.photopea.com/",
+    "avatar": "/logo.svg",
+    "category": "工具"
   }
 ]

@@ -9,55 +9,64 @@ const artalkEnabled =
 const site = {
   // --- Site Metadata ---
   meta: {
-    title: "Breeze",
-    description: "A minimal Astro theme for personal websites",
-    author: "Your Name",
+    title: "tretrenya's blog",
+    description: "漫漫人生路",
+    author: "tretrenya",
     logo: "/logo.svg",
     ogImage: "/og-image.png",
-    // HTML lang attribute, affects page language and date formatting
-    // Options: "zh-CN", "en", "ja", etc.
-    lang: "en",
+    lang: "zh-CN",
   },
 
   // --- Navigation ---
   // subtitle: decorative label shown below the name (uppercase, small text)
   navigation: [
-    { name: "Home", subtitle: "Index", href: "/" },
-    { name: "Writing", subtitle: "Blog", href: "/posts" },
-    { name: "Projects", subtitle: "Works", href: "/projects" },
-    { name: "Friends", subtitle: "Links", href: "/friends" },
-    { name: "About", subtitle: "Me", href: "/about" },
+    { name: "首页", subtitle: "Home", href: "/" },
+    { name: "文章", subtitle: "Blog", href: "/posts" },
+    { name: "项目", subtitle: "Projects", href: "/projects" },
+    { name: "导航", subtitle: "Links", href: "/friends" },
+    { name: "音乐", subtitle: "Music", href: "/music" },
+    { name: "关于", subtitle: "About", href: "/about" },
   ],
 
   // --- Social Links ---
   social: [
-    { name: "GitHub", href: "https://github.com/your-username", icon: "mdi:github" },
-    { name: "Email", href: "mailto:hello@example.com", icon: "mdi:email" },
+    {
+      name: "GitHub",
+      href: "https://github.com/1572817043",
+      icon: "mdi:github",
+    },
+    { name: "Email", href: "mailto:1572817043@qq.com", icon: "mdi:email" },
+    {
+      name: "Bilibili",
+      href: "https://space.bilibili.com/176130665",
+      icon: "mdi:video",
+    },
   ],
 
   friendCard: {
-    name: "Breeze",
-    description: "A minimal Astro theme for personal websites",
-    link: "https://your-domain.com",
-    avatar: "https://your-domain.com/logo.svg",
+    name: "tretrenya",
+    description: "漫漫人生路",
+    link: "https://1572817043.github.io",
+    avatar:
+      "https://telegraph-image-92x.pages.dev/file/b5429fe388a02d40bf94b-0013f8c8d77973d702.jpg",
   },
 
   // --- Homepage Hero ---
   hero: {
-    greeting: "👋 Hello, I'm Breeze",
-    // Supports HTML. Use <span class="font-medium text-foreground underline decoration-primary/30"> to highlight keywords
+    greeting: "👋 你好，我是 tretrenya",
     description:
-      'A minimal personal website theme built with <span class="font-medium text-foreground underline decoration-primary/30">Astro</span> and <span class="font-medium text-foreground underline decoration-primary/30">Tailwind CSS</span>.',
+      '一个喜欢<span class="font-medium text-foreground underline decoration-primary/30">折腾</span>和<span class="font-medium text-foreground underline decoration-primary/30">分享</span>的人。漫漫人生路，记录一些想法和发现。',
     cards: [
-      { icon: "mdi:explore", label: "Status", value: "Building something cool" },
-      { icon: "mdi:location", label: "Location", value: "Earth" },
+      { icon: "mdi:explore", label: "状态", value: "正在折腾点什么" },
+      { icon: "mdi:location", label: "位置", value: "地球" },
+      { icon: "mdi:github", label: "GitHub", value: "1572817043" },
     ],
   },
 
   // --- Footer ---
   footer: {
-    copyright: "© 2025 Breeze",
-    builtWith: "Built with Astro",
+    copyright: "© 2025 tretrenya",
+    builtWith: "使用 Astro 构建",
   },
 
   // --- Comments ---
@@ -83,55 +92,87 @@ const site = {
     {
       name: "development",
       items: [
-        { name: "VS Code", link: "https://code.visualstudio.com", icon: "mdi:microsoft-visual-studio-code" },
-        { name: "WebStorm", link: "https://www.jetbrains.com/webstorm", icon: "mdi:code-braces" },
+        {
+          name: "VS Code",
+          link: "https://code.visualstudio.com",
+          icon: "mdi:microsoft-visual-studio-code",
+        },
+        {
+          name: "WebStorm",
+          link: "https://www.jetbrains.com/webstorm",
+          icon: "mdi:code-braces",
+        },
         { name: "Terminal", icon: "mdi:terminal" },
         { name: "Git", link: "https://git-scm.com", icon: "mdi:git" },
         { name: "Docker", link: "https://www.docker.com", icon: "mdi:docker" },
         { name: "Postman", link: "https://www.postman.com", icon: "mdi:api" },
-      ]
+      ],
     },
     {
       name: "design",
       items: [
-        { name: "Figma", link: "https://www.figma.com", icon: "mdi:vector-polygon" },
-        { name: "Sketch", link: "https://www.sketch.com", icon: "mdi:vector-square" },
-        { name: "Adobe XD", link: "https://www.adobe.com/products/xd.html", icon: "mdi:pencil-ruler" },
-        { name: "Photoshop", link: "https://www.adobe.com/products/photoshop.html", icon: "mdi:image-edit" },
-      ]
+        {
+          name: "Figma",
+          link: "https://www.figma.com",
+          icon: "mdi:vector-polygon",
+        },
+        {
+          name: "Sketch",
+          link: "https://www.sketch.com",
+          icon: "mdi:vector-square",
+        },
+        {
+          name: "Adobe XD",
+          link: "https://www.adobe.com/products/xd.html",
+          icon: "mdi:pencil-ruler",
+        },
+        {
+          name: "Photoshop",
+          link: "https://www.adobe.com/products/photoshop.html",
+          icon: "mdi:image-edit",
+        },
+      ],
     },
     {
       name: "productivity",
       items: [
         { name: "Notion", link: "https://www.notion.so", icon: "mdi:notebook" },
-        { name: "Obsidian", link: "https://obsidian.md", icon: "mdi:diamond-stone" },
-        { name: "Raycast", link: "https://www.raycast.com", icon: "mdi:lightning-bolt" },
+        {
+          name: "Obsidian",
+          link: "https://obsidian.md",
+          icon: "mdi:diamond-stone",
+        },
+        {
+          name: "Raycast",
+          link: "https://www.raycast.com",
+          icon: "mdi:lightning-bolt",
+        },
         { name: "Arc Browser", link: "https://arc.net", icon: "mdi:web" },
-      ]
+      ],
     },
   ],
 
   // --- UI Labels ---
   // Customize these values to change the text displayed on pages
   labels: {
-    postsTitle: "Writing",
-    postsDescription: "Notes, thoughts, and technical musings",
-    projectsTitle: "Projects",
-    projectsDescription: "Small tools built for fun or to solve real problems.",
-    friendsTitle: "Friends",
-    friendsDescription: "Like-minded folks around the web.",
-    toolsTitle: "Stack",
-    aboutTitle: "About",
-    aboutDescription: "About this site and its author",
-    backToPosts: "Back to posts",
-    goHome: "Go Home",
-    notFoundTitle: "Page not found",
-    notFoundDescription: "The page you're looking for may have been removed or the link is broken.",
-    endOfPost: "End of Post",
-    tableOfContents: "Table of Contents",
-    searchPlaceholder: "Search posts, tags, or commands...",
-    searchNavigate: "Navigate",
-    commentSuccess: "Comment submitted",
+    postsTitle: "文章",
+    postsDescription: "想法、思考和一些记录",
+    projectsTitle: "项目",
+    projectsDescription: "为了解决问题或纯粹好玩而做的小工具。",
+    friendsTitle: "导航",
+    friendsDescription: "收藏的网站和资源。",
+    toolsTitle: "工具",
+    aboutTitle: "关于",
+    aboutDescription: "关于这个网站和作者",
+    backToPosts: "返回文章",
+    goHome: "回到首页",
+    notFoundTitle: "页面未找到",
+    notFoundDescription: "你要找的页面可能已被删除或链接已失效。",
+    endOfPost: "文章结束",
+    tableOfContents: "目录",
+    searchPlaceholder: "搜索文章、标签...",
+    searchNavigate: "跳转",
+    commentSuccess: "评论提交成功",
   },
 
   ogImage: "/og-image.png",

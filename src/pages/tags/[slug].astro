@@ -25,11 +25,8 @@ export async function getStaticPaths() {
 const { tag, posts } = Astro.props;
 ---
 
-<Layout
-  title={`Tag: ${tag.data.name}`}
-  description={`${tag.data.name}`}
->
-  <div class="mx-auto max-w-2xl p-8 md:p-16">
+<Layout title={`Tag: ${tag.data.name}`} description={`${tag.data.name}`}>
+  <div class="mx-auto max-w-4xl p-8 md:p-16">
     <header class="mb-16">
       <a
         href="/tags"
